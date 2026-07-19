@@ -5,16 +5,16 @@ import { useState } from "react";
 type Lang = "python" | "typescript";
 
 function Kw({ children }: { children: React.ReactNode }) {
-  return <span className="text-sky-300">{children}</span>;
+  return <span className="text-[#6FA8FF]">{children}</span>;
 }
 function Str({ children }: { children: React.ReactNode }) {
-  return <span className="text-emerald-300">{children}</span>;
+  return <span className="text-[#8FD4A8]">{children}</span>;
 }
 function Cmt({ children }: { children: React.ReactNode }) {
-  return <span className="text-zinc-500">{children}</span>;
+  return <span className="text-[#6B6B66]">{children}</span>;
 }
 function Fn({ children }: { children: React.ReactNode }) {
-  return <span className="text-zinc-100">{children}</span>;
+  return <span className="text-[#FAF9F6]">{children}</span>;
 }
 
 const pythonSnippet = (
@@ -87,8 +87,11 @@ export default function CodeTabs() {
   const [lang, setLang] = useState<Lang>("python");
 
   return (
-    <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 shadow-lg shadow-zinc-950/40">
-      <div className="flex items-center gap-1 border-b border-zinc-800 px-3 py-2">
+    <div
+      className="overflow-hidden rounded-2xl border border-[#2A2A2A] bg-[#111111]"
+      style={{ boxShadow: "0 8px 40px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06)" }}
+    >
+      <div className="flex items-center gap-1 border-b border-[#2A2A2A] px-3 py-2">
         {(["python", "typescript"] as const).map((l) => (
           <button
             key={l}
@@ -97,15 +100,15 @@ export default function CodeTabs() {
             aria-pressed={lang === l}
             className={`rounded-lg px-3 py-1.5 font-mono text-xs transition-colors ${
               lang === l
-                ? "bg-zinc-800 text-zinc-100"
-                : "text-zinc-400 hover:text-zinc-200"
+                ? "bg-[#1A1A1A] text-[#FAF9F6]"
+                : "text-[#9A9A92] hover:text-[#FAF9F6]"
             }`}
           >
             {l === "python" ? "Python" : "TypeScript"}
           </button>
         ))}
       </div>
-      <pre className="overflow-x-auto p-4 font-mono text-[13px] leading-6 text-zinc-300">
+      <pre className="overflow-x-auto p-4 font-mono text-[13px] leading-6 text-[#D6D3CB]">
         <code>{lang === "python" ? pythonSnippet : typescriptSnippet}</code>
       </pre>
     </div>

@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { CheckIcon, CopyIcon } from "@phosphor-icons/react/dist/ssr";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Copy01Icon, Tick02Icon } from "@hugeicons/core-free-icons";
 
 export default function CopyCommand({ command }: { command: string }) {
   const [copied, setCopied] = useState(false);
@@ -23,18 +24,23 @@ export default function CopyCommand({ command }: { command: string }) {
       type="button"
       onClick={copy}
       aria-label={`Copy command: ${command}`}
-      className="group inline-flex items-center gap-2.5 rounded-lg border border-zinc-300 bg-zinc-50 px-3.5 py-2 font-mono text-[13px] text-zinc-700 transition-colors hover:border-zinc-400 active:scale-[0.98] dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-500"
+      className="group inline-flex items-center gap-2.5 rounded-lg border border-[#E5E1D6] bg-white px-3.5 py-2 font-mono text-[13px] text-[#0a0a0a] transition-colors hover:bg-[#F2F0E9] active:scale-[0.98] dark:border-[#2A2A2A] dark:bg-[#111111] dark:text-[#FAF9F6] dark:hover:bg-[#1A1A1A]"
     >
-      <span aria-hidden className="select-none text-zinc-400 dark:text-zinc-500">
+      <span aria-hidden className="select-none text-[#9A9A92]">
         $
       </span>
       {command}
       {copied ? (
-        <CheckIcon size={14} weight="bold" className="text-emerald-600 dark:text-emerald-400" />
-      ) : (
-        <CopyIcon
+        <HugeiconsIcon
+          icon={Tick02Icon}
           size={14}
-          className="text-zinc-400 transition-colors group-hover:text-zinc-600 dark:text-zinc-500 dark:group-hover:text-zinc-300"
+          className="text-[#1860D3] dark:text-[#6FA8FF]"
+        />
+      ) : (
+        <HugeiconsIcon
+          icon={Copy01Icon}
+          size={14}
+          className="text-[#9A9A92] transition-colors group-hover:text-[#0a0a0a] dark:group-hover:text-[#FAF9F6]"
         />
       )}
     </button>

@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 @theme {
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
 }
 
@@ -23,5 +25,9 @@ html {
 }
 
 ::selection {
-  background: oklch(0.696 0.17 162.48 / 0.35);
+  background: rgba(24, 96, 211, 0.22);
+}
+
+.dark ::selection {
+  background: rgba(111, 168, 255, 0.28);
 }

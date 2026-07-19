@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <g id="Group_4" data-name="Group 4" transform="translate(-176 -226)">
+    <rect id="Rectangle_1" data-name="Rectangle 1" width="256" height="256" rx="80" transform="translate(176 226)"/>
+    <rect id="Rectangle_7" data-name="Rectangle 7" width="65" height="25" rx="12.5" transform="translate(234 385) rotate(90)" fill="#222"/>
+    <path id="Path_2" data-name="Path 2" d="M-15.033.367S3.66,18.805,3.66,37.04-15.033,72.867-15.033,72.867" transform="translate(346.033 293.133)" fill="none" stroke="#222" stroke-linecap="round" stroke-width="25"/>
+    <rect id="Rectangle_8" data-name="Rectangle 8" width="94" height="25" rx="12.5" transform="translate(237 369)" fill="#222"/>
+    <rect id="Rectangle_3" data-name="Rectangle 3" width="94" height="25" rx="12.5" transform="translate(252 359)" fill="#fff"/>
+    <rect id="Rectangle_9" data-name="Rectangle 9" width="81" height="25" rx="12.5" transform="translate(231 287)" fill="#222"/>
+    <rect id="Rectangle_2" data-name="Rectangle 2" width="81" height="25" rx="12.5" transform="translate(244 281)" fill="#fff"/>
+    <path id="Path_1" data-name="Path 1" d="M-15.033.367S6.746,17.261,6.746,35.5s-21.78,37.371-21.78,37.371" transform="translate(356.533 296.133)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="25"/>
+    <rect id="Rectangle_10" data-name="Rectangle 10" width="25" height="25" rx="12.5" transform="translate(374 428) rotate(90)" fill="#222"/>
+    <rect id="Rectangle_5" data-name="Rectangle 5" width="25" height="25" rx="12.5" transform="translate(376 425) rotate(90)" fill="#fff"/>
+    <rect id="Rectangle_11" data-name="Rectangle 11" width="12" height="12" rx="6" transform="translate(387 440) rotate(90)" fill="#222"/>
+    <rect id="Rectangle_6" data-name="Rectangle 6" width="12" height="12" rx="6" transform="translate(388 438) rotate(90)" fill="#fff"/>
+    <rect id="Rectangle_12" data-name="Rectangle 12" width="65" height="25" rx="12.5" transform="translate(234 311) rotate(90)" fill="#222"/>
+    <rect id="Rectangle_13" data-name="Rectangle 13" width="68" height="25" rx="12.5" transform="translate(249 302) rotate(90)" fill="#fff"/>
+    <rect id="Rectangle_4" data-name="Rectangle 4" width="68" height="25" rx="12.5" transform="translate(249 376) rotate(90)" fill="#fff"/>
+  </g>
+</svg>

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Figtree, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geist = Geist({
-  variable: "--font-geist",
+const figtree = Figtree({
+  variable: "--font-figtree",
   subsets: ["latin"],
 });
 
@@ -12,33 +12,80 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://polygate.getfluiq.com";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://polygate.getfluiq.com"),
-  title: "polygate - One function. Any LLM provider.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "polygate - One function. Any LLM provider.",
+    template: "%s | polygate",
+  },
   description:
-    "A tiny, dependency-light client that gives Anthropic, OpenAI, Gemini, and Moonshot one consistent request and response shape. Open source, MIT licensed, for Python and TypeScript.",
+    "polygate is a tiny, dependency-light open-source client that gives Anthropic (Claude), OpenAI, Google Gemini, and Moonshot (Kimi) one consistent request and response shape. MIT licensed, for Python and TypeScript.",
+  keywords: [
+    "unified LLM API",
+    "LLM client",
+    "LLM wrapper",
+    "multi-provider LLM",
+    "Anthropic Claude API",
+    "OpenAI API",
+    "Google Gemini API",
+    "Moonshot Kimi API",
+    "LiteLLM alternative",
+    "Python LLM library",
+    "TypeScript LLM library",
+    "open source",
+    "polygate",
+  ],
+  authors: [{ name: "Saurabh Kumbhar", url: "https://github.com/SaurabhKumbhar24" }],
+  creator: "FluiqAI",
+  publisher: "FluiqAI",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: "polygate - One function. Any LLM provider.",
     description:
-      "A tiny open-source client that normalizes Anthropic, OpenAI, Gemini, and Moonshot behind one function. Python and TypeScript.",
-    url: "https://polygate.getfluiq.com",
+      "A tiny open-source client that normalizes Anthropic, OpenAI, Gemini, and Moonshot behind one function. Python and TypeScript. MIT licensed.",
+    url: SITE_URL,
     siteName: "polygate",
     type: "website",
+    locale: "en_US",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "polygate - One function. Any LLM provider.",
     description:
-      "A tiny open-source client that normalizes Anthropic, OpenAI, Gemini, and Moonshot behind one function.",
+      "A tiny open-source client that normalizes Anthropic, OpenAI, Gemini, and Moonshot behind one function. Python and TypeScript.",
   },
+  category: "technology",
 };
+
+const themeInitScript = `try{var t=localStorage.getItem("theme");var d=t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;if(d)document.documentElement.classList.add("dark")}catch(e){}`;
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
-      <body className="bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100">
+    <html
+      lang="en"
+      className={`${figtree.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className="bg-[#FAF9F6] font-sans text-[#0A0A0A] antialiased dark:bg-[#0A0A0A] dark:text-[#FAF9F6]">
         {children}
       </body>
     </html>

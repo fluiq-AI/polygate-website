@@ -1,13 +1,33 @@
-import {
-  ArrowUpRightIcon,
-  GithubLogoIcon,
-} from "@phosphor-icons/react/dist/ssr";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowUpRight01Icon, GithubIcon } from "@hugeicons/core-free-icons";
 import CodeTabs from "@/components/CodeTabs";
 import CopyCommand from "@/components/CopyCommand";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const GITHUB_URL = "https://github.com/SaurabhKumbhar24/polygate";
 const PYPI_URL = "https://pypi.org/project/polygate/";
 const NPM_URL = "https://www.npmjs.com/package/polygate";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "polygate",
+  description:
+    "A tiny, dependency-light open-source client that gives Anthropic, OpenAI, Google Gemini, and Moonshot one consistent request and response shape.",
+  url: "https://polygate.getfluiq.com",
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Any",
+  softwareVersion: "0.1.0",
+  license: "https://opensource.org/licenses/MIT",
+  programmingLanguage: ["Python", "TypeScript"],
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  author: {
+    "@type": "Person",
+    name: "Saurabh Kumbhar",
+    url: "https://github.com/SaurabhKumbhar24",
+  },
+  sameAs: [GITHUB_URL, PYPI_URL, NPM_URL],
+};
 
 const providers = [
   {
@@ -45,6 +65,11 @@ const responseFields = [
   { field: "raw", desc: "the untouched original provider response" },
 ];
 
+const mutedText = "text-[#6B6B66] dark:text-[#9A9A92]";
+const borderCls = "border-[#E5E1D6] dark:border-[#2A2A2A]";
+const hoverFg = "hover:text-[#0a0a0a] dark:hover:text-[#FAF9F6]";
+const accentText = "text-[#1860D3] dark:text-[#6FA8FF]";
+
 function ExternalLink({
   href,
   children,
@@ -69,31 +94,36 @@ function ExternalLink({
 export default function Home() {
   return (
     <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Nav */}
       <header className="flex h-16 items-center justify-between">
-        <span className="font-mono text-[15px] font-semibold tracking-tight">
-          polygate
+        <span className="flex items-center gap-2.5">
+          <img src="/logo.svg" alt="polygate logo" className="size-7 rounded-lg" />
+          <span className="text-[15px] font-semibold tracking-tight">
+            polygate
+          </span>
         </span>
-        <nav className="flex items-center gap-5 text-sm text-zinc-500 dark:text-zinc-400">
-          <ExternalLink
-            href={PYPI_URL}
-            className="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
-          >
+        <nav
+          className={`flex items-center gap-5 text-[13px] ${mutedText}`}
+        >
+          <ExternalLink href={PYPI_URL} className={`transition-colors ${hoverFg}`}>
             PyPI
           </ExternalLink>
-          <ExternalLink
-            href={NPM_URL}
-            className="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
-          >
+          <ExternalLink href={NPM_URL} className={`transition-colors ${hoverFg}`}>
             npm
           </ExternalLink>
           <ExternalLink
             href={GITHUB_URL}
-            className="inline-flex items-center gap-1.5 transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+            className={`inline-flex items-center gap-1.5 transition-colors ${hoverFg}`}
           >
-            <GithubLogoIcon size={16} />
+            <HugeiconsIcon icon={GithubIcon} size={16} />
             GitHub
           </ExternalLink>
+          <ThemeToggle />
         </nav>
       </header>
 
@@ -105,18 +135,18 @@ export default function Home() {
             <br />
             Any LLM provider.
           </h1>
-          <p className="mt-5 max-w-md text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <p className={`mt-5 max-w-md text-base leading-relaxed ${mutedText}`}>
             A tiny, dependency-light client that gives Anthropic, OpenAI,
             Gemini, and Moonshot one consistent request and response shape.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <ExternalLink
+          <ExternalLink
               href={GITHUB_URL}
-              className="inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700 active:scale-[0.98] dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white"
+              className="inline-flex mt-8 items-center gap-2 rounded-lg bg-[#0a0a0a] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#1a1a1a] active:scale-[0.98] dark:bg-[#FAF9F6] dark:text-[#0A0A0A] dark:hover:bg-[#F2F0E9]"
             >
-              <GithubLogoIcon size={16} weight="fill" />
+              <HugeiconsIcon icon={GithubIcon} size={16} />
               GitHub
-            </ExternalLink>
+          </ExternalLink>
+          <div className="mt-2 flex flex-wrap items-center gap-3">
             <CopyCommand command="pip install polygate" />
             <CopyCommand command="npm install polygate" />
           </div>
@@ -125,95 +155,92 @@ export default function Home() {
       </section>
 
       {/* Providers */}
-      <section className="border-t border-zinc-200 py-20 dark:border-zinc-800">
+      <section className={`border-t py-20 ${borderCls}`}>
         <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
           Swap providers by changing one string
         </h2>
-        <p className="mt-3 max-w-[60ch] text-zinc-600 dark:text-zinc-400">
+        <p className={`mt-3 max-w-[60ch] ${mutedText}`}>
           Every adapter translates the same message list into whatever shape
           the provider actually expects. API keys come from the argument or
           fall back to the environment.
         </p>
-        <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-zinc-200 bg-zinc-200 sm:grid-cols-2 dark:border-zinc-800 dark:bg-zinc-800">
+        <div
+          className={`mt-10 grid gap-px overflow-hidden rounded-2xl border bg-[#E5E1D6] sm:grid-cols-2 dark:bg-[#2A2A2A] ${borderCls}`}
+        >
           {providers.map((p) => (
             <div
               key={p.name}
-              className="bg-white p-6 transition-colors hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900/60"
+              className="bg-white p-6 transition-colors hover:bg-[#F2F0E9] dark:bg-[#111111] dark:hover:bg-[#1A1A1A]"
             >
               <div className="flex items-baseline justify-between gap-3">
                 <h3 className="font-medium">{p.name}</h3>
-                <span className="text-sm text-zinc-500 dark:text-zinc-400">
-                  {p.detail}
-                </span>
+                <span className={`text-sm ${mutedText}`}>{p.detail}</span>
               </div>
               <div className="mt-4 flex flex-wrap gap-2">
                 {p.aliases.map((a) => (
                   <code
                     key={a}
-                    className="rounded-lg bg-zinc-100 px-2 py-1 font-mono text-xs text-emerald-700 dark:bg-zinc-900 dark:text-emerald-400"
+                    className={`rounded-lg bg-[#F2F0E9] px-2 py-1 font-mono text-xs dark:bg-[#0A0A0A] ${accentText}`}
                   >
                     &quot;{a}&quot;
                   </code>
                 ))}
               </div>
-              <p className="mt-4 font-mono text-xs text-zinc-500 dark:text-zinc-400">
-                {p.env}
-              </p>
+              <p className={`mt-4 font-mono text-xs ${mutedText}`}>{p.env}</p>
             </div>
           ))}
         </div>
-        <p className="mt-6 text-sm text-zinc-500 dark:text-zinc-400">
+        <p className={`mt-6 text-sm ${mutedText}`}>
           Adding a provider is one adapter file and one registry line.{" "}
           <ExternalLink
             href={`${GITHUB_URL}/blob/main/CONTRIBUTING.md`}
-            className="inline-flex items-center gap-0.5 font-medium text-emerald-700 transition-colors hover:text-emerald-600 dark:text-emerald-400 dark:hover:text-emerald-300"
+            className={`inline-flex items-center gap-0.5 font-medium transition-opacity hover:opacity-80 ${accentText}`}
           >
             Contribute one
-            <ArrowUpRightIcon size={14} />
+            <HugeiconsIcon icon={ArrowUpRight01Icon} size={14} />
           </ExternalLink>
         </p>
       </section>
 
       {/* Unified response */}
-      <section className="grid gap-10 border-t border-zinc-200 py-20 lg:grid-cols-2 lg:gap-16 dark:border-zinc-800">
+      <section
+        className={`grid gap-10 border-t py-20 lg:grid-cols-2 lg:gap-16 ${borderCls}`}
+      >
         <div>
           <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
             Every call returns the same shape
           </h2>
-          <p className="mt-3 max-w-[55ch] text-zinc-600 dark:text-zinc-400">
+          <p className={`mt-3 max-w-[55ch] ${mutedText}`}>
             No more learning four response formats. Anything a provider
             returns that polygate does not normalize is still there, untouched,
             under <code className="font-mono text-sm">raw</code>.
           </p>
-          <p className="mt-3 max-w-[55ch] text-zinc-600 dark:text-zinc-400">
+          <p className={`mt-3 max-w-[55ch] ${mutedText}`}>
             Extra keyword arguments pass straight through to the provider, so
             provider-specific options like tools, top_p, or stop sequences
             keep working without polygate needing to know about them.
           </p>
         </div>
-        <dl className="divide-y divide-zinc-200 rounded-xl border border-zinc-200 dark:divide-zinc-800 dark:border-zinc-800">
+        <dl
+          className={`divide-y divide-[#E5E1D6] rounded-2xl border dark:divide-[#2A2A2A] ${borderCls}`}
+        >
           {responseFields.map((f) => (
-            <div
-              key={f.field}
-              className="flex items-baseline gap-4 px-5 py-3.5"
-            >
-              <dt className="w-24 shrink-0 font-mono text-sm text-emerald-700 dark:text-emerald-400">
+            <div key={f.field} className="flex items-baseline gap-4 px-5 py-3.5">
+              <dt className={`w-24 shrink-0 font-mono text-sm ${accentText}`}>
                 {f.field}
               </dt>
-              <dd className="text-sm text-zinc-600 dark:text-zinc-400">
-                {f.desc}
-              </dd>
+              <dd className={`text-sm ${mutedText}`}>{f.desc}</dd>
             </div>
           ))}
         </dl>
       </section>
 
       {/* Scope */}
-      <section className="border-t border-zinc-200 py-20 dark:border-zinc-800">
+      <section className={`border-t py-20 ${borderCls}`}>
         <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
           Small on purpose
         </h2>
-        <p className="mt-3 max-w-[65ch] text-zinc-600 dark:text-zinc-400">
+        <p className={`mt-3 max-w-[65ch] ${mutedText}`}>
           polygate is not trying to out-feature LiteLLM, Portkey, or Helicone.
           It is the smallest layer that normalizes requests and responses
           across providers, with each adapter readable in under 100 lines.
@@ -221,20 +248,18 @@ export default function Home() {
           whatever opinions your project actually needs.
         </p>
         <div className="mt-10 grid gap-8 sm:grid-cols-2">
-          <div className="rounded-xl bg-zinc-50 p-6 dark:bg-zinc-900/60">
+          <div className="rounded-2xl bg-[#F2F0E9] p-6 dark:bg-[#111111]">
             <h3 className="text-sm font-medium">What it does</h3>
-            <ul className="mt-4 space-y-2.5 text-sm text-zinc-600 dark:text-zinc-400">
+            <ul className={`mt-4 space-y-2.5 text-sm ${mutedText}`}>
               <li>One chat function across all providers</li>
               <li>One message format, one response shape</li>
               <li>API keys from arguments or environment</li>
               <li>Passthrough for provider-specific options</li>
             </ul>
           </div>
-          <div className="rounded-xl border border-zinc-200 p-6 dark:border-zinc-800">
-            <h3 className="text-sm font-medium">
-              What it leaves to you
-            </h3>
-            <ul className="mt-4 space-y-2.5 text-sm text-zinc-600 dark:text-zinc-400">
+          <div className={`rounded-2xl border p-6 ${borderCls}`}>
+            <h3 className="text-sm font-medium">What it leaves to you</h3>
+            <ul className={`mt-4 space-y-2.5 text-sm ${mutedText}`}>
               <li>Retries and backoff</li>
               <li>Caching and cost tracking</li>
               <li>Routing and fallback logic</li>
@@ -245,34 +270,27 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="flex flex-col gap-4 border-t border-zinc-200 py-10 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between dark:border-zinc-800 dark:text-zinc-400">
+      <footer
+        className={`flex flex-col gap-4 border-t py-10 text-[13px] sm:flex-row sm:items-center sm:justify-between ${borderCls} ${mutedText}`}
+      >
         <p>
           MIT licensed. Built by the team behind{" "}
           <ExternalLink
             href="https://getfluiq.com"
-            className="font-medium text-zinc-700 transition-colors hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-100"
+            className={`font-medium text-[#0a0a0a] transition-opacity hover:opacity-80 dark:text-[#FAF9F6]`}
           >
             FluiqAI
           </ExternalLink>
           .
         </p>
         <nav className="flex items-center gap-5">
-          <ExternalLink
-            href={PYPI_URL}
-            className="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
-          >
+          <ExternalLink href={PYPI_URL} className={`transition-colors ${hoverFg}`}>
             PyPI
           </ExternalLink>
-          <ExternalLink
-            href={NPM_URL}
-            className="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
-          >
+          <ExternalLink href={NPM_URL} className={`transition-colors ${hoverFg}`}>
             npm
           </ExternalLink>
-          <ExternalLink
-            href={GITHUB_URL}
-            className="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
-          >
+          <ExternalLink href={GITHUB_URL} className={`transition-colors ${hoverFg}`}>
             GitHub
           </ExternalLink>
         </nav>
