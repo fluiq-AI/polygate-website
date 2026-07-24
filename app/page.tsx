@@ -1,6 +1,9 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowUpRight01Icon, GithubIcon } from "@hugeicons/core-free-icons";
-import CodeTabs from "@/components/CodeTabs";
+import CodeTabs, {
+  reliabilityPython,
+  reliabilityTypescript,
+} from "@/components/CodeTabs";
 import CopyCommand from "@/components/CopyCommand";
 import ThemeToggle from "@/components/ThemeToggle";
 
@@ -235,6 +238,33 @@ export default function Home() {
         </dl>
       </section>
 
+      {/* Reliability */}
+      <section className={`grid gap-10 border-t py-20 lg:grid-cols-2 lg:gap-16 ${borderCls}`}>
+        <div>
+          <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
+            Rotate keys, ride out rate limits
+          </h2>
+          <p className={`mt-3 max-w-[55ch] ${mutedText}`}>
+            A rate limit is per key, not per host. Sleeping through a 429 while
+            another key sits idle wastes the whole backoff window, so polygate
+            rotates first and only backs off once it runs out of keys.
+          </p>
+          <p className={`mt-3 max-w-[55ch] ${mutedText}`}>
+            A key the provider rejects outright is dropped for the rest of the
+            process rather than retried forever. Deterministic failures are
+            never retried at all: a 400, 404, or 422 cannot succeed on a second
+            attempt, so sending it again just bills you twice.
+          </p>
+          <p className={`mt-3 max-w-[55ch] ${mutedText}`}>
+            Both features are off unless you ask for them. A single{" "}
+            <code className="font-mono text-sm">api_key</code> with no{" "}
+            <code className="font-mono text-sm">retry</code> behaves exactly as
+            it always has.
+          </p>
+        </div>
+        <CodeTabs python={reliabilityPython} typescript={reliabilityTypescript} />
+      </section>
+
       {/* Scope */}
       <section className={`border-t py-20 ${borderCls}`}>
         <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
@@ -244,8 +274,9 @@ export default function Home() {
           polygate is not trying to out-feature LiteLLM, Portkey, or Helicone.
           It is the smallest layer that normalizes requests and responses
           across providers, with each adapter readable in under 100 lines.
-          Retries, caching, and routing are yours to build on top, with
-          whatever opinions your project actually needs.
+          Key rotation and backoff are opt-in and off by default; caching and
+          routing are still yours to build on top, with whatever opinions your
+          project actually needs.
         </p>
         <div className="mt-10 grid gap-8 sm:grid-cols-2">
           <div className="rounded-2xl bg-[#F2F0E9] p-6 dark:bg-[#111111]">

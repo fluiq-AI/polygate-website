@@ -83,7 +83,91 @@ const typescriptSnippet = (
   </>
 );
 
-export default function CodeTabs() {
+export const reliabilityPython = (
+  <>
+    <div>
+      <Kw>from</Kw> polygate <Kw>import</Kw> chat, Retry
+    </div>
+    <div>&nbsp;</div>
+    <div>
+      response = <Fn>chat</Fn>(
+    </div>
+    <div>
+      {"    "}provider=<Str>&quot;anthropic&quot;</Str>,
+    </div>
+    <div>
+      {"    "}model=<Str>&quot;claude-sonnet-4-6&quot;</Str>,
+    </div>
+    <div>
+      {"    "}messages=[{"{"}
+      <Str>&quot;role&quot;</Str>: <Str>&quot;user&quot;</Str>,{" "}
+      <Str>&quot;content&quot;</Str>: <Str>&quot;Say hi.&quot;</Str>
+      {"}"}],
+    </div>
+    <div>&nbsp;</div>
+    <div>
+      {"    "}<Cmt># One key, a list, or a reusable KeyPool.</Cmt>
+    </div>
+    <div>
+      {"    "}api_key=[<Str>&quot;sk-1&quot;</Str>, <Str>&quot;sk-2&quot;</Str>,{" "}
+      <Str>&quot;sk-3&quot;</Str>],
+    </div>
+    <div>&nbsp;</div>
+    <div>
+      {"    "}<Cmt># Omit retry= for the old behavior: one request, no retries.</Cmt>
+    </div>
+    <div>
+      {"    "}retry=<Fn>Retry</Fn>(max_attempts=<Str>4</Str>),
+    </div>
+    <div>)</div>
+  </>
+);
+
+export const reliabilityTypescript = (
+  <>
+    <div>
+      <Kw>import</Kw> {"{ chat }"} <Kw>from</Kw> <Str>&quot;polygate&quot;</Str>;
+    </div>
+    <div>&nbsp;</div>
+    <div>
+      <Kw>const</Kw> response = <Kw>await</Kw> <Fn>chat</Fn>({"{"}
+    </div>
+    <div>
+      {"  "}provider: <Str>&quot;anthropic&quot;</Str>,
+    </div>
+    <div>
+      {"  "}model: <Str>&quot;claude-sonnet-4-6&quot;</Str>,
+    </div>
+    <div>
+      {"  "}messages: [{"{"} role: <Str>&quot;user&quot;</Str>, content:{" "}
+      <Str>&quot;Say hi.&quot;</Str> {"}"}],
+    </div>
+    <div>&nbsp;</div>
+    <div>
+      {"  "}<Cmt>{'// One key, a list, or a reusable KeyPool.'}</Cmt>
+    </div>
+    <div>
+      {"  "}apiKey: [<Str>&quot;sk-1&quot;</Str>, <Str>&quot;sk-2&quot;</Str>,{" "}
+      <Str>&quot;sk-3&quot;</Str>],
+    </div>
+    <div>&nbsp;</div>
+    <div>
+      {"  "}<Cmt>{'// Omit retry for the old behavior: one request, no retries.'}</Cmt>
+    </div>
+    <div>
+      {"  "}retry: {"{"} maxAttempts: <Str>4</Str> {"}"},
+    </div>
+    <div>{"});"}</div>
+  </>
+);
+
+export default function CodeTabs({
+  python = pythonSnippet,
+  typescript = typescriptSnippet,
+}: {
+  python?: React.ReactNode;
+  typescript?: React.ReactNode;
+} = {}) {
   const [lang, setLang] = useState<Lang>("python");
 
   return (
@@ -109,7 +193,7 @@ export default function CodeTabs() {
         ))}
       </div>
       <pre className="overflow-x-auto p-4 font-mono text-[13px] leading-6 text-[#D6D3CB]">
-        <code>{lang === "python" ? pythonSnippet : typescriptSnippet}</code>
+        <code>{lang === "python" ? python : typescript}</code>
       </pre>
     </div>
   );
