@@ -312,7 +312,15 @@ export default function Home() {
           >
             FluiqAI
           </ExternalLink>
-          .
+          , which handles the layer above this one: tracing, evals, and output
+          guardrails.{" "}
+          <ExternalLink
+            href="https://getfluiq.com/response-gate-demo"
+            className={`font-medium text-[#0a0a0a] transition-opacity hover:opacity-80 dark:text-[#FAF9F6]`}
+          >
+            See what a guardrail catches
+          </ExternalLink>
+          , no account needed.
         </p>
         <nav className="flex items-center gap-5">
           <ExternalLink href={PYPI_URL} className={`transition-colors ${hoverFg}`}>
