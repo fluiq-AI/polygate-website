@@ -39,7 +39,7 @@ export default function OpengraphImage() {
           </div>
         </div>
         <div style={{ display: "flex", fontSize: 30, color: "#9A9A92" }}>
-          12 providers, plus your own endpoint. Python and TypeScript. MIT licensed.
+          26 providers, clouds and gateways, plus your own endpoint. Python and TypeScript. MIT licensed.
         </div>
       </div>
     ),
