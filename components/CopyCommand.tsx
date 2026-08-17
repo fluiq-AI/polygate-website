@@ -24,7 +24,7 @@ export default function CopyCommand({ command }: { command: string }) {
       type="button"
       onClick={copy}
       aria-label={`Copy command: ${command}`}
-      className="group inline-flex items-center gap-2.5 rounded-lg border border-[#E5E1D6] bg-white px-3.5 py-2 font-mono text-[13px] text-[#0a0a0a] transition-colors hover:bg-[#F2F0E9] active:scale-[0.98] dark:border-[#2A2A2A] dark:bg-[#111111] dark:text-[#FAF9F6] dark:hover:bg-[#1A1A1A]"
+      className="group inline-flex items-center gap-2.5 rounded-lg border border-[#E5E1D6] bg-white px-3.5 py-2 font-mono text-[13px] text-[#0a0a0a] transition-colors hover:bg-[#E9EFF2] active:scale-[0.98] dark:border-[#2A2A2A] dark:bg-[#111111] dark:text-[#FFFFFF] dark:hover:bg-[#1A1A1A]"
     >
       <span aria-hidden className="select-none text-[#9A9A92]">
         $
@@ -40,7 +40,7 @@ export default function CopyCommand({ command }: { command: string }) {
         <HugeiconsIcon
           icon={Copy01Icon}
           size={14}
-          className="text-[#9A9A92] transition-colors group-hover:text-[#0a0a0a] dark:group-hover:text-[#FAF9F6]"
+          className="text-[#9A9A92] transition-colors group-hover:text-[#0a0a0a] dark:group-hover:text-[#FFFFFF]"
         />
       )}
     </button>

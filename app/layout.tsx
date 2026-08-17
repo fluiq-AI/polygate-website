@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | polygate",
   },
   description:
-    "polygate is a tiny, dependency-light open-source client that gives Anthropic (Claude), OpenAI, Google Gemini, and Moonshot (Kimi) one consistent request and response shape. MIT licensed, for Python and TypeScript.",
+    "polygate is a tiny, dependency-light open-source client that gives OpenAI, Anthropic (Claude), Google Gemini, Mistral, Groq, Together, Fireworks, Perplexity, xAI (Grok), Cerebras, DeepSeek, Moonshot (Kimi) — and any endpoint you host yourself — one consistent request and response shape. MIT licensed, for Python and TypeScript.",
   keywords: [
     "unified LLM API",
     "LLM client",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "polygate - One function. Any LLM provider.",
     description:
-      "A tiny open-source client that normalizes Anthropic, OpenAI, Gemini, and Moonshot behind one function. Python and TypeScript. MIT licensed.",
+      "A tiny open-source client that normalizes 12 LLM providers — and your own endpoint — behind one function. Python and TypeScript. MIT licensed.",
     url: SITE_URL,
     siteName: "polygate",
     type: "website",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "polygate - One function. Any LLM provider.",
     description:
-      "A tiny open-source client that normalizes Anthropic, OpenAI, Gemini, and Moonshot behind one function. Python and TypeScript.",
+      "A tiny open-source client that normalizes 12 LLM providers — and your own endpoint — behind one function. Python and TypeScript.",
   },
   category: "technology",
 };
@@ -85,7 +85,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body className="bg-[#FAF9F6] font-sans text-[#0A0A0A] antialiased dark:bg-[#0A0A0A] dark:text-[#FAF9F6]">
+      <body className="bg-[#FFFFFF] font-sans text-[#0A0A0A] antialiased dark:bg-[#0A0A0A] dark:text-[#FFFFFF]">
         {children}
       </body>
     </html>

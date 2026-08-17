@@ -16,7 +16,7 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           background: "#0A0A0A",
-          color: "#FAF9F6",
+          color: "#FFFFFF",
           padding: 72,
           fontFamily: "sans-serif",
         }}
@@ -39,7 +39,7 @@ export default function OpengraphImage() {
           </div>
         </div>
         <div style={{ display: "flex", fontSize: 30, color: "#9A9A92" }}>
-          Anthropic, OpenAI, Gemini, Moonshot. Python and TypeScript. MIT licensed.
+          12 providers, plus your own endpoint. Python and TypeScript. MIT licensed.
         </div>
       </div>
     ),

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowUpRight01Icon, GithubIcon } from "@hugeicons/core-free-icons";
 import CodeTabs, {
@@ -16,7 +17,7 @@ const jsonLd = {
   "@type": "SoftwareApplication",
   name: "polygate",
   description:
-    "A tiny, dependency-light open-source client that gives Anthropic, OpenAI, Google Gemini, and Moonshot one consistent request and response shape.",
+    "A tiny, dependency-light open-source client that gives 26 LLM providers, clouds and gateways — and any endpoint you host yourself — one consistent request and response shape.",
   url: "https://polygate.getfluiq.com",
   applicationCategory: "DeveloperApplication",
   operatingSystem: "Any",
@@ -34,16 +35,16 @@ const jsonLd = {
 
 const providers = [
   {
-    name: "Anthropic",
-    detail: "Claude models",
-    aliases: ["anthropic", "claude"],
-    env: "ANTHROPIC_API_KEY",
-  },
-  {
     name: "OpenAI",
     detail: "GPT models",
     aliases: ["openai", "gpt"],
     env: "OPENAI_API_KEY",
+  },
+  {
+    name: "Anthropic",
+    detail: "Claude models",
+    aliases: ["anthropic", "claude"],
+    env: "ANTHROPIC_API_KEY",
   },
   {
     name: "Google Gemini",
@@ -52,10 +53,148 @@ const providers = [
     env: "GEMINI_API_KEY",
   },
   {
+    name: "Mistral",
+    detail: "Mistral models",
+    aliases: ["mistral"],
+    env: "MISTRAL_API_KEY",
+  },
+  {
+    name: "Groq",
+    detail: "LPU inference",
+    aliases: ["groq"],
+    env: "GROQ_API_KEY",
+  },
+  {
+    name: "Together AI",
+    detail: "Open-weight models",
+    aliases: ["together", "togetherai"],
+    env: "TOGETHER_API_KEY",
+  },
+  {
+    name: "Fireworks",
+    detail: "Fast open models",
+    aliases: ["fireworks"],
+    env: "FIREWORKS_API_KEY",
+  },
+  {
+    name: "Perplexity",
+    detail: "Sonar, web-grounded",
+    aliases: ["perplexity", "sonar", "pplx"],
+    env: "PERPLEXITY_API_KEY",
+  },
+  {
+    name: "xAI",
+    detail: "Grok models",
+    aliases: ["xai", "grok"],
+    env: "XAI_API_KEY",
+  },
+  {
+    name: "Cerebras",
+    detail: "Wafer-scale inference",
+    aliases: ["cerebras"],
+    env: "CEREBRAS_API_KEY",
+  },
+  {
+    name: "DeepSeek",
+    detail: "DeepSeek models",
+    aliases: ["deepseek"],
+    env: "DEEPSEEK_API_KEY",
+  },
+  {
     name: "Moonshot",
     detail: "Kimi models",
     aliases: ["moonshot", "kimi"],
     env: "MOONSHOT_API_KEY",
+  },
+  {
+    name: "Z.AI",
+    detail: "GLM models",
+    aliases: ["zai", "z.ai", "glm", "zhipu"],
+    env: "ZAI_API_KEY",
+  },
+  {
+    name: "Amazon Bedrock",
+    detail: "Every model AWS hosts, via Converse",
+    aliases: ["bedrock", "aws"],
+    env: "AWS_ACCESS_KEY_ID",
+  },
+  {
+    name: "Azure OpenAI",
+    detail: "Your deployments",
+    aliases: ["azure"],
+    env: "AZURE_OPENAI_API_KEY",
+  },
+  {
+    name: "Google Vertex AI",
+    detail: "Gemini and partner models",
+    aliases: ["vertex"],
+    env: "GOOGLE_ACCESS_TOKEN",
+  },
+  {
+    name: "Databricks",
+    detail: "Model Serving endpoints",
+    aliases: ["databricks"],
+    env: "DATABRICKS_TOKEN",
+  },
+  {
+    name: "Cloudflare",
+    detail: "Workers AI, on the edge",
+    aliases: ["cloudflare", "workers-ai"],
+    env: "CLOUDFLARE_API_TOKEN",
+  },
+  {
+    name: "OpenRouter",
+    detail: "Hundreds of models, one key",
+    aliases: ["openrouter"],
+    env: "OPENROUTER_API_KEY",
+  },
+  {
+    name: "Vercel AI Gateway",
+    detail: "Routing across every vendor",
+    aliases: ["vercel", "ai-gateway"],
+    env: "AI_GATEWAY_API_KEY",
+  },
+  {
+    name: "Baseten",
+    detail: "Hosted open models",
+    aliases: ["baseten"],
+    env: "BASETEN_API_KEY",
+  },
+  {
+    name: "DeepInfra",
+    detail: "Open models per token",
+    aliases: ["deepinfra"],
+    env: "DEEPINFRA_API_KEY",
+  },
+  {
+    name: "SambaNova",
+    detail: "Open models on RDU silicon",
+    aliases: ["sambanova"],
+    env: "SAMBANOVA_API_KEY",
+  },
+  {
+    name: "Nebius",
+    detail: "European AI Studio",
+    aliases: ["nebius"],
+    env: "NEBIUS_API_KEY",
+  },
+  {
+    name: "Novita",
+    detail: "GPU marketplace pricing",
+    aliases: ["novita"],
+    env: "NOVITA_API_KEY",
+  },
+  {
+    name: "Hyperbolic",
+    detail: "Spare GPU capacity",
+    aliases: ["hyperbolic"],
+    env: "HYPERBOLIC_API_KEY",
+  },
+  {
+    name: "Your own endpoint",
+    detail: "Ollama, vLLM, any OpenAI-compatible host",
+    aliases: ["custom", "ollama", "local", "vllm"],
+    env: "POLYGATE_BASE_URL",
   },
 ];
 
@@ -70,7 +209,7 @@ const responseFields = [
 
 const mutedText = "text-[#6B6B66] dark:text-[#9A9A92]";
 const borderCls = "border-[#E5E1D6] dark:border-[#2A2A2A]";
-const hoverFg = "hover:text-[#0a0a0a] dark:hover:text-[#FAF9F6]";
+const hoverFg = "hover:text-[#0a0a0a] dark:hover:text-[#FFFFFF]";
 const accentText = "text-[#1860D3] dark:text-[#6FA8FF]";
 
 function ExternalLink({
@@ -113,6 +252,9 @@ export default function Home() {
         <nav
           className={`flex items-center gap-5 text-[13px] ${mutedText}`}
         >
+          <Link href="/docs" className={`transition-colors ${hoverFg}`}>
+            Docs
+          </Link>
           <ExternalLink href={PYPI_URL} className={`transition-colors ${hoverFg}`}>
             PyPI
           </ExternalLink>
@@ -139,12 +281,12 @@ export default function Home() {
             Any LLM provider.
           </h1>
           <p className={`mt-5 max-w-md text-base leading-relaxed ${mutedText}`}>
-            A tiny, dependency-light client that gives Anthropic, OpenAI,
-            Gemini, and Moonshot one consistent request and response shape.
+            A tiny, dependency-light client that gives 26 providers — and any
+            endpoint you host yourself — one consistent request and response shape.
           </p>
           <ExternalLink
               href={GITHUB_URL}
-              className="inline-flex mt-8 items-center gap-2 rounded-lg bg-[#0a0a0a] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#1a1a1a] active:scale-[0.98] dark:bg-[#FAF9F6] dark:text-[#0A0A0A] dark:hover:bg-[#F2F0E9]"
+              className="inline-flex mt-8 items-center gap-2 rounded-lg bg-[#0a0a0a] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#1a1a1a] active:scale-[0.98] dark:bg-[#FFFFFF] dark:text-[#0A0A0A] dark:hover:bg-[#E9EFF2]"
             >
               <HugeiconsIcon icon={GithubIcon} size={16} />
               GitHub
@@ -173,7 +315,7 @@ export default function Home() {
           {providers.map((p) => (
             <div
               key={p.name}
-              className="bg-white p-6 transition-colors hover:bg-[#F2F0E9] dark:bg-[#111111] dark:hover:bg-[#1A1A1A]"
+              className="bg-white p-6 transition-colors hover:bg-[#E9EFF2] dark:bg-[#111111] dark:hover:bg-[#1A1A1A]"
             >
               <div className="flex items-baseline justify-between gap-3">
                 <h3 className="font-medium">{p.name}</h3>
@@ -183,7 +325,7 @@ export default function Home() {
                 {p.aliases.map((a) => (
                   <code
                     key={a}
-                    className={`rounded-lg bg-[#F2F0E9] px-2 py-1 font-mono text-xs dark:bg-[#0A0A0A] ${accentText}`}
+                    className={`rounded-lg bg-[#E9EFF2] px-2 py-1 font-mono text-xs dark:bg-[#0A0A0A] ${accentText}`}
                   >
                     &quot;{a}&quot;
                   </code>
@@ -279,7 +421,7 @@ export default function Home() {
           project actually needs.
         </p>
         <div className="mt-10 grid gap-8 sm:grid-cols-2">
-          <div className="rounded-2xl bg-[#F2F0E9] p-6 dark:bg-[#111111]">
+          <div className="rounded-2xl bg-[#E9EFF2] p-6 dark:bg-[#111111]">
             <h3 className="text-sm font-medium">What it does</h3>
             <ul className={`mt-4 space-y-2.5 text-sm ${mutedText}`}>
               <li>One chat function across all providers</li>
@@ -308,7 +450,7 @@ export default function Home() {
           MIT licensed. Built by the team behind{" "}
           <ExternalLink
             href="https://getfluiq.com"
-            className={`font-medium text-[#0a0a0a] transition-opacity hover:opacity-80 dark:text-[#FAF9F6]`}
+            className={`font-medium text-[#0a0a0a] transition-opacity hover:opacity-80 dark:text-[#FFFFFF]`}
           >
             FluiqAI
           </ExternalLink>
@@ -316,7 +458,7 @@ export default function Home() {
           guardrails.{" "}
           <ExternalLink
             href="https://getfluiq.com/response-gate-demo"
-            className={`font-medium text-[#0a0a0a] transition-opacity hover:opacity-80 dark:text-[#FAF9F6]`}
+            className={`font-medium text-[#0a0a0a] transition-opacity hover:opacity-80 dark:text-[#FFFFFF]`}
           >
             See what a guardrail catches
           </ExternalLink>

@@ -14,7 +14,7 @@ function Cmt({ children }: { children: React.ReactNode }) {
   return <span className="text-[#6B6B66]">{children}</span>;
 }
 function Fn({ children }: { children: React.ReactNode }) {
-  return <span className="text-[#FAF9F6]">{children}</span>;
+  return <span className="text-[#FFFFFF]">{children}</span>;
 }
 
 const pythonSnippet = (
@@ -184,8 +184,8 @@ export default function CodeTabs({
             aria-pressed={lang === l}
             className={`rounded-lg px-3 py-1.5 font-mono text-xs transition-colors ${
               lang === l
-                ? "bg-[#1A1A1A] text-[#FAF9F6]"
-                : "text-[#9A9A92] hover:text-[#FAF9F6]"
+                ? "bg-[#1A1A1A] text-[#FFFFFF]"
+                : "text-[#9A9A92] hover:text-[#FFFFFF]"
             }`}
           >
             {l === "python" ? "Python" : "TypeScript"}
